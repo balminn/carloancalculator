@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Car Loan Calculator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">My Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Car Loan Calculator</h1>
+    <main>
+        
+        <form id="loanForm">
+            <div class="form-group">
+                <label for="name">Username:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tel">Phone Number:</label>
+                <input type="number" id="tel" name="tel" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="monthlySalary">Monthly Salary:</label>
+                <input type="number" id="monthlySalary" name="monthlySalary" required>
+            </div>
+
+            <div class="form-group">
+                <label for="carPrice">Car Price:</label>
+                <input type="number" id="carPrice" name="carPrice" required>
+            </div>
+
+            <div class="form-group">
+                <label for="loanTerm">Loan Term (Month(s)):</label>
+                <input type="number" id="loanTerm" name="loanTerm" required>
+            </div>
+
+            <div class="form-group">
+                <label for="interestRate">Interest Rate (%):</label>
+                <input type="number" id="interestRate" name="interestRate" required>
+            </div>
+
+            <button type="submit" onclick="calculateLoan()">Calculate </button>
+        </form>
+
+        <div id="result" class="result-container"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Iqbal Amin</p>
+    </footer>
+</body>
+
+</html>
