@@ -6,6 +6,8 @@ document.getElementById('loanForm').addEventListener('submit', function(event) {
 document.getElementById('carModel').addEventListener('change', updateCarPrice);
 document.getElementById('carVariant').addEventListener('change', updateCarPrice);
 document.getElementById('depositAmount').addEventListener('input', validateDepositAmount);
+document.getElementById('interestRate').addEventListener('input', validateInterestRate);
+document.getElementById('repaymentPeriod').addEventListener('input', validateRepaymentPeriod);
 
 function updateCarPrice() {
     var carModel = document.getElementById('carModel').value;
@@ -28,23 +30,38 @@ function validateDepositAmount() {
     }
 }
 
+function validateInterestRate() {
+    var interestRate = parseFloat(document.getElementById('interestRate').value);
+
+    if (interestRate < 0 || interestRate > 5) {
+        alert("Interest rate must be between 0 and 5.");
+        document.getElementById('interestRate').value = '';
+    }
+}
+
+function validateRepaymentPeriod() {
+    var repaymentPeriod = parseInt(document.getElementById('repaymentPeriod').value);
+
+    if (repaymentPeriod < 1 || repaymentPeriod > 10) {
+        alert("Repayment period must be between 1 and 10 years.");
+        document.getElementById('repaymentPeriod').value = '';
+    }
+}
 
 function calculateLoan() {
     event.preventDefault(); // Prevent page refresh
-    var loanForm = document.getElementById('loanForm');
-    
-    // Check if all required fields are filled
-    if (!loanForm.checkValidity()) {
-        alert('Please fill in all required fields.');
-        return;
-    }
-
     var carModel = document.getElementById('carModel').value;
     var carVariant = document.getElementById('carVariant').value;
+    var carColor = document.getElementById('carColor').value;
     var carPrice = getCarPrice(carModel, carVariant);
     var depositAmount = parseFloat(document.getElementById('depositAmount').value);
     var interestRate = parseFloat(document.getElementById('interestRate').value);
     var repaymentPeriod = parseInt(document.getElementById('repaymentPeriod').value);
+
+    if (carModel === "" || carVariant === "" || carColor === "" || isNaN(depositAmount) || isNaN(interestRate) || isNaN(repaymentPeriod)) {
+        alert("Please fill in all the required fields with valid input.");
+        return;
+    }
 
     var loanAmount = carPrice - depositAmount;
     var interest = (interestRate / 100) * loanAmount;
@@ -72,14 +89,13 @@ function calculateLoan() {
         '<h2>Result:</h2>' +
         '<p><strong>Car Model:</strong> ' + carModel + '</p>' +
         '<p><strong>Car Variant:</strong> ' + carVariant + '</p>' +
+        '<p><strong>Car Color:</strong> ' + carColor + '</p>' +
         '<p><strong>Car Price:</strong> RM' + carPrice.toFixed(2) + '</p>' +
         '<p><strong>Deposit Amount:</strong> RM' + depositAmount.toFixed(2) + '</p>' +
         '<p><strong>Interest Rate:</strong> ' + interestRate + '%</p>' +
         '<p><strong>Repayment Period:</strong> ' + repaymentPeriod + ' years</p>' +
         '<p><strong>Monthly Payment:</strong> RM' + monthlyPayment.toFixed(2) + '</p>';
 }
-
-
 
 function getCarPrice(model, variant) {
     var price;
@@ -93,9 +109,9 @@ function getCarPrice(model, variant) {
             price = 55000;
         }
     } else if (model === 'Aruz') {
-        if (variant === 'standard') {
+        if (variant === 'Standard') {
             price = 30000;
-        } else if (variant === 'luxury') {
+        } else if (variant === 'Luxury') {
             price = 45000;
         } else if (variant === 'Gear Up') {
             price = 60000;

@@ -21,7 +21,7 @@
         <form id="loanForm">
             <div class="form-group">
                 <label for="carModel">Car Model:</label>
-                <select id="carModel" name="carModel" onchange="updateCarPrice()">
+                <select id="carModel" name="carModel" onchange="updateCarPrice()" required>
                     <option value="" disabled selected>Please choose</option>
                     <option value="Ativa">Ativa</option>
                     <option value="Aruz">Aruz</option>
@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <label for="carVariant">Car Variant:</label>
-                <select id="carVariant" name="carVariant" onchange="updateCarPrice()">
+                <select id="carVariant" name="carVariant" onchange="updateCarPrice()" required>
                     <option value="" disabled selected>Please choose</option>
                     <option value="Standard">Standard</option>
                     <option value="Luxury">Luxury</option>
@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="carColor">Car Color:</label>
-                <select id="carColor" name="carColor">
+                <select id="carColor" name="carColor" required>
                     <option value="" disabled selected>Please choose</option>
                     <option value="Red">Red</option>
                     <option value="Blue">Blue</option>
@@ -52,7 +52,7 @@
 
             <div class="form-group">
                 <label for="carPrice">Car Price (RM):</label>
-                <input type="text" id="carPrice" name="carPrice" readonly>
+                <input type="text" id="carPrice" name="carPrice" readonly required>
             </div>
 
             <div class="form-group">
