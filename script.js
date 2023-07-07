@@ -5,7 +5,6 @@ document.getElementById('loanForm').addEventListener('submit', function(event) {
 
 document.getElementById('carModel').addEventListener('change', updateCarPrice);
 document.getElementById('carVariant').addEventListener('change', updateCarPrice);
-
 document.getElementById('depositAmount').addEventListener('input', validateDepositAmount);
 
 function updateCarPrice() {
@@ -32,6 +31,14 @@ function validateDepositAmount() {
 
 function calculateLoan() {
     event.preventDefault(); // Prevent page refresh
+    var loanForm = document.getElementById('loanForm');
+    
+    // Check if all required fields are filled
+    if (!loanForm.checkValidity()) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
     var carModel = document.getElementById('carModel').value;
     var carVariant = document.getElementById('carVariant').value;
     var carPrice = getCarPrice(carModel, carVariant);
