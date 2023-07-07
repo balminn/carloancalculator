@@ -18,49 +18,75 @@
     </header>
     <h1>Car Loan Calculator</h1>
     <main>
-        
         <form id="loanForm">
             <div class="form-group">
-                <label for="name">Username:</label>
-                <input type="text" id="name" name="name" required>
+                <label for="carModel">Car Model:</label>
+                <select id="carModel" name="carModel" onchange="updateCarPrice()">
+                    <option value="" disabled selected>Please choose</option>
+                    <option value="Ativa">Ativa</option>
+                    <option value="Aruz">Aruz</option>
+                    <option value="Myvi">Myvi</option>
+                </select>
             </div>
 
             <div class="form-group">
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required>
+                <label for="carVariant">Car Variant:</label>
+                <select id="carVariant" name="carVariant" onchange="updateCarPrice()">
+                    <option value="" disabled selected>Please choose</option>
+                    <option value="Standard">Standard</option>
+                    <option value="Luxury">Luxury</option>
+                    <option value="Gear Up">Gear Up</option>
+                </select>
             </div>
 
             <div class="form-group">
-                <label for="tel">Phone Number:</label>
-                <input type="number" id="tel" name="tel" required>
+                <label for="carColor">Car Color:</label>
+                <select id="carColor" name="carColor">
+                    <option value="" disabled selected>Please choose</option>
+                    <option value="Red">Red</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                </select>
             </div>
 
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="carPrice">Car Price (RM):</label>
+                <input type="text" id="carPrice" name="carPrice" readonly>
             </div>
 
             <div class="form-group">
-                <label for="monthlySalary">Monthly Salary:</label>
-                <input type="number" id="monthlySalary" name="monthlySalary" required>
+                <label for="depositAmount">Deposit Amount (RM):</label>
+                <input type="number" id="depositAmount" name="depositAmount" oninput="validateDepositAmount()" required>
+                <div class="slider">
+                    <input type="range" id="depositAmountSlider" name="depositAmountSlider" min="0" max="50000"
+                        step="1000" oninput="updateDepositAmountSlider(this.value)">
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="carPrice">Car Price:</label>
-                <input type="number" id="carPrice" name="carPrice" required>
-            </div>
-
-            <div class="form-group">
-                <label for="loanTerm">Loan Term (Month(s)):</label>
-                <input type="number" id="loanTerm" name="loanTerm" required>
-            </div>
+            
 
             <div class="form-group">
                 <label for="interestRate">Interest Rate (%):</label>
                 <input type="number" id="interestRate" name="interestRate" required>
+                <div class="slider">
+                    <input type="range" id="interestRateSlider" name="interestRateSlider" min="0" max="5" step="0.1"
+                        oninput="updateInterestRateSlider(this.value)">
+                </div>
             </div>
 
-            <button type="submit" onclick="calculateLoan()">Calculate </button>
+            <div class="form-group">
+                <label for="repaymentPeriod">Repayment Period (Years):</label>
+                <input type="number" id="repaymentPeriod" name="repaymentPeriod" required>
+                <div class="slider">
+                    <input type="range" id="repaymentPeriodSlider" name="repaymentPeriodSlider" min="1" max="10"
+                        step="1" oninput="updateRepaymentPeriodSlider(this.value)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" onclick="calculateLoan()">Calculate</button>
+                <button type="reset">Reset</button>
+            </div>
         </form>
 
         <div id="result" class="result-container"></div>
